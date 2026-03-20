@@ -70,8 +70,8 @@ function App() {
               <button
                 className="text-xs px-2 py-1 border rounded"
                 onClick={async () => {
-                  const t = prompt('Nouveau titre', c.title);
-                  if (t?.trim()) {
+                  const t = window.prompt('Nouveau titre', c.title);
+                  if (typeof t === 'string' && t.trim().length > 0) {
                     await renameConversation(c.id, t.trim());
                     await loadConversations();
                     if (activeId === c.id) setActive(await fetchConversation(c.id));
@@ -83,10 +83,17 @@ function App() {
               <button
                 className="text-xs px-2 py-1 border rounded text-red-600"
                 onClick={async () => {
-                  if (confirm('Supprimer cette conversation ?')) {
+                  if (window.confirm('Supprimer cette conversation ?')) {
                     await deleteConversation(c.id);
-                    if (activeId === c.id) setActiveId(null);
-                    await loadConversations();
+                    if (activeId === c.id) {
+                      setActiveId(null);
+                      setActive(null);
+                    }
+                    const items = await fetchConversations();
+                    setConversations(items);
+                    if (items.length > 0 && activeId === c.id) {
+                      setActiveId(items[0].id);
+                    }
                   }
                 }}
               >
@@ -130,3 +137,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { sendMessageSchema } from '../validators/chatValidators';
-import { addAssistantMessage, addUserMessage, createConversationWithUserMessage, getConversationById, } from '../services/conversationService';
-import { getAssistantReply } from '../services/assistantService';
+import { sendMessageSchema } from '../validators/chatValidators.js';
+import { addAssistantMessage, addUserMessage, createConversationWithUserMessage, getConversationById, } from '../services/conversationService.js';
+import { getAssistantReply } from '../services/assistantService.js';
 export const chatRouter = Router();
 chatRouter.post('/message', async (req, res) => {
     const parsed = sendMessageSchema.safeParse(req.body);

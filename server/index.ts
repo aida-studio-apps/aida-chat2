@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { chatRouter } from './routes/chat';
-import { conversationsRouter } from './routes/conversations';
+import { chatRouter } from './routes/chat.js';
+import { conversationsRouter } from './routes/conversations.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,3 +25,4 @@ app.get('*', (_req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+

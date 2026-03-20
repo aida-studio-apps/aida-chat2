@@ -1,4 +1,4 @@
-import { prisma } from '../db/prisma';
+import { prisma } from '../db/prisma.js';
 
 export async function listConversations() {
   const conversations = await prisma.conversation.findMany({
@@ -11,7 +11,7 @@ export async function listConversations() {
     },
   });
 
-  return conversations.map((c) => ({
+  return conversations.map((c: (typeof conversations)[number]) => ({
     id: c.id,
     title: c.title,
     lastMessagePreview: c.messages[0]?.content?.slice(0, 120) ?? null,
@@ -56,3 +56,5 @@ export async function renameConversation(id: string, title: string) {
 export async function deleteConversation(id: string) {
   await prisma.conversation.delete({ where: { id } });
 }
+
+

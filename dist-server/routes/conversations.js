@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { renameConversationSchema } from '../validators/chatValidators';
-import { deleteConversation, getConversationById, listConversations, renameConversation, } from '../services/conversationService';
+import { renameConversationSchema } from '../validators/chatValidators.js';
+import { deleteConversation, getConversationById, listConversations, renameConversation, } from '../services/conversationService.js';
 export const conversationsRouter = Router();
 conversationsRouter.get('/', async (_req, res) => {
     const items = await listConversations();

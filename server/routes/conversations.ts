@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { renameConversationSchema } from '../validators/chatValidators';
+import { renameConversationSchema } from '../validators/chatValidators.js';
 import {
   deleteConversation,
   getConversationById,
   listConversations,
   renameConversation,
-} from '../services/conversationService';
+} from '../services/conversationService.js';
 
 export const conversationsRouter = Router();
 
@@ -31,3 +31,5 @@ conversationsRouter.delete('/:id', async (req, res) => {
   await deleteConversation(req.params.id);
   return res.status(204).send();
 });
+
+
